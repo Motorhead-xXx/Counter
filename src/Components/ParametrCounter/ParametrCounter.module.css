@@ -1,0 +1,99 @@
+body {
+    background-color: #000000;
+}
+
+.wrapper {
+    grid-template-areas:
+    "v v"
+    "i i";
+    display: grid;
+    width: 250px;
+    height: 150px;
+    border: solid 3px #117003;
+    padding: 10px 15px 10px 15px;
+    gap: 10px;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.inputWrapper {
+    grid-area: v;
+    display: grid;
+    border: none;
+    height: 90px;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.input {
+    width: 80px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.input:focus{
+    background: #a2ec97;
+    border: 2px solid yellow;
+    outline: none;
+    border-radius: 10px;
+}
+
+.inputError {
+    width: 80px;
+    text-align: center;
+    border: 2px solid red;
+    background: #e7a8a8;
+    color: red;
+    font-weight: bold;
+    outline: none;
+}
+
+.inputError:focus {
+    width: 80px;
+    text-align: center;
+     border: 2px solid red;
+    background: #e7a8a8;
+    color: red;
+    font-weight: bold;
+    outline: none;
+}
+
+.inputString {
+    display: flex;
+    gap: 40px;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.buttonWrapper {
+    grid-area: i;
+    display: flex;
+    justify-content: space-around;
+    border: #117003 3px solid;
+    border-radius: 50px;
+    padding: 10px;
+    background: white;
+}
+
+.inc {
+    width: 80px;
+    border-radius: 5px;
+    background-color: #fff8b2;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}
+
+.reset {
+    width: 80px;
+    border-radius: 5px;
+    background-color: #6bc25f;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}

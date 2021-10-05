@@ -1,0 +1,46 @@
+body {
+    background-color: #000000;
+}
+
+.wrapper {
+    grid-template-areas:
+    "v v"
+    "i i";
+    display: grid;
+    width: 250px;
+    height: 150px;
+    border: solid 3px #117003;
+    padding: 10px 15px 10px 15px;
+    gap: 10px;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.value {
+    grid-area: v;
+    display: grid;
+    border: none;
+    height: 90px;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.buttonWrapper {
+    grid-area: i;
+    display: flex;
+    justify-content: space-around;
+    border: #117003 3px solid;
+    border-radius: 50px;
+    padding: 10px;
+    background: white;
+}
+
+.Set{
+
+}
+

@@ -1,0 +1,19 @@
+.button{
+    width: 70px;
+    border-radius: 5px;
+    background-color: #6bc25f;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}
+
+.button:active{
+    width: 71px;
+    border-radius: 5px;
+    background-color: #219611;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}
+
+

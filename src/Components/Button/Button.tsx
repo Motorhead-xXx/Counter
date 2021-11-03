@@ -1,23 +1,24 @@
 import React from "react";
-import s from "./Button.module.css"
-import {Button} from "@material-ui/core";
+import {CustomButton} from "./ButtonCustom";
 
-type counterType = {
-    callBack: () => void
-    disabled: boolean
-    children: string
+type ButtonType = {
+    callback?: () => void
+    title?: string
+    disabled?: boolean
 }
 
-export const ButtonClick = (props: counterType) => {
-    const buttonClick = () => {
-        props.callBack()
+
+export const ButtonCounter = ({callback, title,...props}: ButtonType) => {
+    const callbackButton = () => {
+        if (callback) {
+            callback()
+        }
     }
 
-    return (
-        <div className={s.buttonWrapper}>
-            <Button disableElevation variant={"contained"} color={"success"} size={"small"} disabled={props.disabled}
-                    onClick={buttonClick}>{props.children}</Button>
-
+    return(
+        <div>
+            <CustomButton  style={ {minWidth:"40px",padding:"8px"} } disabled={props.disabled} onClick={callbackButton} color={"primary"} size={"small"} variant="contained">{title}</CustomButton>
         </div>
     )
+
 }

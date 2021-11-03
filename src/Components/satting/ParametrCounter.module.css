@@ -1,0 +1,19 @@
+.wrapperSetting{
+    width: 340px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.inputWrapper{
+    display: flex;
+}
+
+.buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,44 +1,53 @@
-import React from "react";
-import s from "./Counter.module.css"
-import {ButtonClick} from "../Button/Button";
-import {MaxMinType} from "../../App";
-import {ButtonDel} from "../Button/ButtonDel";
-
-type counterType = {
-    value: MaxMinType
-    setValue: (value:MaxMinType) => void
-    counterIncrease: () => void
-    resetCounter: () => void
-}
-
-const Counter = ({value,setValue, ...props}: counterType) => {
-    const styleValue = {color: value.display === value.max ? "red" : "black"};
-    const condition = value.min < 0 || value.max < 0 || value.max < value.min || value.max === value.min;
-    const spanStyle = {color: "red", fontSize: "30px"};
-
-    const Local = Number(localStorage.getItem("max")) !== value.max || Number(localStorage.getItem("min")) !== value.min
-    const display = (condition) ? <span style={spanStyle}>Invalid value!</span> : Local ?
-        <span style={{color: "blue", fontSize: "18px", alignContent:"center"}}>Enter values and press "set"!</span>: value.display
+import {ButtonCounter} from "../button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {rootReducerType} from "../../reducers/store";
+import {incCounterAC, resetDisplayAC} from "../../reducers/counter-reducer";
+import s from './Counter.module.css'
+import {ButtonReset} from "../button/ButtonRES";
 
 
-   const resetCounter = () => {
-            props.resetCounter()
-   }
-    const counterIncrease = () => {
-        props.counterIncrease()
+const Counter = () => {
+    const minValueCounter = useSelector<rootReducerType, string|number>(state => state.counter.minValue)
+    const maxValueCounter = useSelector<rootReducerType, string|number>(state => state.counter.maxValue)
+    const error = useSelector<rootReducerType, boolean>(state => state.counter.error)
+    const setLocal = useSelector<rootReducerType, boolean>(state => state.counter.setLocal)
+
+    const displayValue = useSelector<rootReducerType, string|number>(state => state.counter.displayValue)
+    const dispatch = useDispatch()
+
+    const incCounter = () => {
+        dispatch(incCounterAC())
+    }
+
+    const resetDisplay = () => {
+        dispatch(resetDisplayAC(+minValueCounter))
     }
 
     return (
-        <div className={s.wrapper}>
-            <div className={s.value} style={styleValue}> {display}</div>
+        <div className={s.wrapperCounter}>
+            <div className={s.display}>
+                    {
+                        error ? <span style={{color: "red", fontSize:"20px",fontWeight:"bold"}}>Invalid value!</span> :
 
-            <div className={s.buttonWrapper}>
-                <ButtonClick disabled={value.display === value.max || value.max < value.min || value.min < 0 || value.max === value.min || Local}
-                        callBack={counterIncrease}>inc</ButtonClick>
-                <ButtonDel disabled={value.display === value.min || value.min < 0 || value.max === value.min || value.max < value.min || Local} callBack={resetCounter}>reset</ButtonDel>
+                            setLocal ? <span style={{color: "blue",fontSize:"20px",fontWeight:"bold"}}>Enter values and press "set"!</span>
+
+                                : <span style={displayValue === +maxValueCounter ? {color: "red", fontSize: "40px",fontWeight:"bold"} : {
+                                    color: "black",
+                                    fontSize: "40px",
+                                    fontWeight:"bold"
+                                }}>{displayValue}</span>
+                    }
+
             </div>
+
+            <div className={s.buttonWrap}>
+                <ButtonCounter disabled={displayValue >= +maxValueCounter || setLocal} callback={incCounter} title={"+"}/>
+                <ButtonReset disabled={displayValue === +minValueCounter || setLocal} callback={resetDisplay}/>
+            </div>
+
         </div>
     )
 }
+
 
 export default Counter;

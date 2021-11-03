@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
+.App{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background: #fcfbe9;
+}
